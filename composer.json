@@ -1,0 +1,57 @@
+{
+    "name": "andy-thorne/domain-events-bundle",
+    "description": "Domain events for Doctrine ODM and ORM",
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Andy Thorne",
+            "email": "andy@AndyThorne.com"
+        }
+    ],
+    "require": {
+        "php": "^7.3",
+        "symfony/framework-bundle": "^4.3|^5.0",
+        "symfony/messenger": "^4.3|^5.0"
+    },
+    "require-dev": {
+        "ext-mongo": "*",
+        "ext-mongodb": "*",
+        "alcaeus/mongo-php-adapter": "^1.1",
+        "dama/doctrine-test-bundle": "^6.3",
+        "doctrine/doctrine-bundle": "^2.0",
+        "doctrine/mongodb-odm-bundle": "^3.4|^4.0",
+        "doctrine/orm": "^2.7",
+        "escapestudios/symfony2-coding-standard": "^3.11",
+        "friendsofphp/php-cs-fixer": "^2.16",
+        "mongodb/mongodb": "1.5",
+        "phpspec/prophecy-phpunit": "^2.0",
+        "phpunit/phpunit": "^9.1",
+        "squizlabs/php_codesniffer": "^3.5",
+        "symfony/yaml": "^4.3|^5.0"
+    },
+    "suggest": {
+        "doctrine/orm-pack": "For use with Doctrine ORM",
+        "ext-mongo": "For use with Doctrine ODM",
+        "ext-mongodb": "For use with Doctrine ODM",
+        "doctrine/mongodb-odm-bundle": "For use with Doctrine ODM",
+        "alcaeus/mongo-php-adapter": "For use with Doctrine ODM",
+        "mongodb/mongodb": "For use with Doctrine ODM"
+    },
+    "autoload": {
+        "psr-4": { "AndyThorne\\Components\\DomainEventsBundle\\": "src/" }
+    },
+    "autoload-dev": {
+        "psr-4": { "Tests\\AndyThorne\\Components\\DomainEventsBundle\\": "tests/" }
+    },
+    "config": {
+        "preferred-install": {
+            "*": "dist"
+        },
+        "sort-packages": true,
+        "platform": {
+            "ext-mongo": "1.6.16",
+            "ext-mongodb": "1.6.0"
+        }
+    }
+}

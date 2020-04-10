@@ -1,0 +1,27 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    Tests\AndyThorne\Components\DomainEventsBundle\Functional\MessageBus\MessageInterceptorMiddleware:
+        public: false
+
+domain_events:
+    orm: false
+    odm: true
+
+framework:
+    test: true
+    session:
+        storage_id: session.storage.mock_file
+    profiler:
+        collect: false
+    php_errors:
+        log: true
+
+    messenger:
+        buses:
+            event.bus:
+                default_middleware: allow_no_handlers
+                middleware:
+                    'Tests\AndyThorne\Components\DomainEventsBundle\Functional\MessageBus\MessageInterceptorMiddleware'

@@ -1,0 +1,17 @@
+domain_events:
+    orm: true
+    odm: false
+
+doctrine:
+    dbal:
+        url: '%env(resolve:ORM_DATABASE_DSN)%'
+    orm:
+        auto_generate_proxy_classes: true
+        auto_mapping: true
+        mappings:
+            TestApp:
+                is_bundle: false
+                type: annotation
+                dir: '%kernel.project_dir%/fixtures/Entity'
+                prefix: Tests\AndyThorne\Components\DomainEventsBundle\Functional\fixtures\Entity\
+                alias: TestApp

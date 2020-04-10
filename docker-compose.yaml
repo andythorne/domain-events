@@ -1,0 +1,35 @@
+version: '3.4'
+services:
+    php:
+        build:
+            context: .
+            dockerfile: docker/Dockerfile
+        networks:
+            - backend
+        volumes:
+            - .:/app:cached
+        environment:
+            ORM_DATABASE_DSN: 'postgres://postgres:postgres@postgres:5432/test-db'
+            ODM_SERVER: 'mongodb://mongo:27017'
+            ODM_DATABASE: 'test-db'
+
+    mongo:
+        image: mongo:3.6
+        networks:
+            - backend
+        ports:
+            - 27017
+
+    postgres:
+        image: postgres:11
+        networks:
+            - backend
+        ports:
+            - 5432
+        environment:
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: postgres
+            POSTGRES_DB: test-db
+
+networks:
+    backend:

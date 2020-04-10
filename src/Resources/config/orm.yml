@@ -1,0 +1,5 @@
+services:
+    AndyThorne\Components\DomainEventsBundle\Doctrine\ORM\PublishDomainEventsSubscriber:
+        arguments:
+            $domainEventScheduler: '@AndyThorne\Components\DomainEventsBundle\Scheduler\DomainEventSchedulerInterface'
+        tags: ['doctrine.event_subscriber']

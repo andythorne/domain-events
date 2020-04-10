@@ -1,0 +1,12 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    AndyThorne\Components\DomainEventsBundle\Scheduler\DomainEventScheduler:
+        arguments:
+            $messageBus: '@Symfony\Component\Messenger\MessageBusInterface'
+
+    AndyThorne\Components\DomainEventsBundle\Scheduler\DomainEventSchedulerInterface:
+        '@AndyThorne\Components\DomainEventsBundle\Scheduler\DomainEventScheduler'
