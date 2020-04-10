@@ -1,0 +1,58 @@
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        php: [7.3, 7.4]
+        symfony: [4.3, 4.4, 5.0]
+
+    services:
+      postgres:
+        image: postgres:11
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: test-db
+        ports:
+          - 5432/tcp
+      mongo:
+        image: mongo:3.6
+        ports:
+          - 27017/tcp
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup PHP, with composer and extensions
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: mbstring, xml, ctype, iconv, intl, pdo_sqlite, pgsql, mongodb
+
+      - name: Install Composer dependencies
+        run: |
+          composer require --dev --no-update symfony/framework-bundle:${{ matrix.symfony }}.*
+          composer install --no-progress --no-suggest --prefer-dist --optimize-autoloader
+
+      - name: Lint
+        run: |
+          php vendor/bin/php-cs-fixer fix --dry-run
+
+      - name: Run Tests
+        env:
+          ORM_DATABASE_DSN: postgres://postgres:postgres@127.0.0.1:${{ job.services.postgres.ports[5432] }}/test-db
+          ODM_SERVER: mongodb://127.0.0.1:${{ job.services.mongo.ports[27017] }}
+          ODM_DATABASE: test-db
+        run: |
+          php vendor/bin/phpunit tests/

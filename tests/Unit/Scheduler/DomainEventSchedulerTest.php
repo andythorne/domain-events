@@ -75,10 +75,14 @@ class DomainEventSchedulerTest extends TestCase
                 return new Envelope($e1[0]);
             });
 
+        $this->assertEquals(4, $this->testSubject->size());
+
         $this->testSubject->process();
+
+        $this->assertEquals(0, $this->testSubject->size());
     }
 
-    public function testProcess_DomainEventsQueuesAnotherDomainEvent_DispatchesInitialEventQueueThenNewEventQueue()
+    public function testProcess_DomainEventsQueuesAnotherDomainEvent_DispatchesInitialEventsOnly()
     {
         $baseTime = new DateTimeImmutable('2019-12-03T12:00:00', new DateTimeZone('Europe/London'));
 
@@ -113,7 +117,11 @@ class DomainEventSchedulerTest extends TestCase
                 return new Envelope($e1[0]);
             });
 
+        $this->assertEquals(2, $this->testSubject->size());
+
         $this->testSubject->process();
+
+        $this->assertEquals(0, $this->testSubject->size());
     }
 
     private function createDomainEventWithDate(DateTimeImmutable $createdAt)
