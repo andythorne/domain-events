@@ -1,40 +1,33 @@
 <?php
 
-namespace Tests\AndyThorne\Components\DomainEventsBundle\Functional\fixtures\Document\DomainEvents;
+namespace Tests\AndyThorne\Components\DomainEventsBundle\Functional\fixtures\Document;
 
 use AndyThorne\Components\DomainEventsBundle\EventProvider\DomainEventProviderInterface;
 use AndyThorne\Components\DomainEventsBundle\EventProvider\DomainEventProviderTrait;
 use AndyThorne\Components\DomainEventsBundle\Events\DomainEvent;
-use Doctrine\ODM\MongoDB\Mapping\Annotations\Document;
-use Doctrine\ODM\MongoDB\Mapping\Annotations\Field;
-use Doctrine\ODM\MongoDB\Mapping\Annotations\Id;
+use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 
 /**
- * @Document()
+ * @ODM\Document()
  */
 class DomainDocument implements DomainEventProviderInterface
 {
     use DomainEventProviderTrait;
 
-    /** @Id() */
+    /** @ODM\Id() */
     private $id;
 
-    /** @Field(type="string") */
+    /** @ODM\Field(type="string") */
     private $action;
 
     public function domainAction(string $action): void
     {
         $this->action = $action;
-        $this->queueDomainEvent(new DomainActionEvent($this, $action));
-    }
-
-    public function getAction(): ?string
-    {
-        return $this->action;
+        $this->addDomainEvent(new DomainActionEventLog($this, $action));
     }
 }
 
-class DomainActionEvent extends DomainEvent
+class DomainActionEventLog extends DomainEvent
 {
     /** @var DomainDocument */
     private $document;
@@ -48,15 +41,5 @@ class DomainActionEvent extends DomainEvent
 
         $this->document = $document;
         $this->action = $action;
-    }
-
-    public function getDocument(): DomainDocument
-    {
-        return $this->document;
-    }
-
-    public function getAction(): string
-    {
-        return $this->action;
     }
 }

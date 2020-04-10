@@ -2,7 +2,7 @@
 
 namespace Tests\AndyThorne\Components\DomainEventsBundle\Unit\Scheduler;
 
-use AndyThorne\Components\DomainEventsBundle\Events\DomainEvent;
+use AndyThorne\Components\DomainEventsBundle\Events\DomainEventInterface;
 use AndyThorne\Components\DomainEventsBundle\Scheduler\DomainEventScheduler;
 use DateInterval;
 use DateTimeImmutable;
@@ -29,7 +29,7 @@ class DomainEventSchedulerTest extends TestCase
 
     public function testSchedule_WithDomainEvent_AddsDomainEventToQueue()
     {
-        $event = $this->prophet->prophesize(DomainEvent::class);
+        $event = $this->prophet->prophesize(DomainEventInterface::class);
 
         $this->testSubject->schedule($event->reveal());
 
@@ -126,7 +126,7 @@ class DomainEventSchedulerTest extends TestCase
 
     private function createDomainEventWithDate(DateTimeImmutable $createdAt)
     {
-        $event = $this->prophet->prophesize(DomainEvent::class);
+        $event = $this->prophet->prophesize(DomainEventInterface::class);
         $event->getCreatedAt()->willReturn($createdAt);
 
         return $event;

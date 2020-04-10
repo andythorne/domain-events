@@ -1,14 +1,8 @@
-services:
-    _defaults:
-        autowire: true
-        autoconfigure: true
-
-    Tests\AndyThorne\Components\DomainEventsBundle\Functional\MessageBus\MessageInterceptorMiddleware:
-        public: false
-
 domain_events:
     orm: false
     odm: true
+    bus: domain_events.bus
+    transport: test_transport
 
 framework:
     test: true
@@ -20,8 +14,10 @@ framework:
         log: true
 
     messenger:
+        transports:
+            test_transport: 'in-memory://'
+            other_transport: 'in-memory://'
+
+        default_bus: 'default.bus'
         buses:
-            event.bus:
-                default_middleware: allow_no_handlers
-                middleware:
-                    'Tests\AndyThorne\Components\DomainEventsBundle\Functional\MessageBus\MessageInterceptorMiddleware'
+            default.bus:

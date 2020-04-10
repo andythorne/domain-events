@@ -9,9 +9,9 @@ abstract class DomainEvent implements DomainEventInterface
 {
     private $createdAt;
 
-    public function __construct()
+    public function __construct(?DateTimeImmutable $createdAt = null)
     {
-        $this->createdAt = new DateTimeImmutable();
+        $this->createdAt = $createdAt ?: new DateTimeImmutable();
     }
 
     public function getCreatedAt(): DateTimeImmutable

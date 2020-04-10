@@ -8,19 +8,19 @@ use AndyThorne\Components\DomainEventsBundle\Scheduler\DomainEventSchedulerInter
 trait DomainEventProviderTrait
 {
     /** @var DomainEventInterface[] */
-    private $domainEvents = [];
+    private $queuedDomainEvents = [];
 
     public function scheduleEvents(DomainEventSchedulerInterface $eventScheduler): void
     {
-        foreach ($this->domainEvents as $event) {
+        foreach ($this->queuedDomainEvents as $event) {
             $eventScheduler->schedule($event);
         }
 
-        $this->domainEvents = [];
+        $this->queuedDomainEvents = [];
     }
 
-    protected function queueDomainEvent(DomainEventInterface $event): void
+    protected function addDomainEvent(DomainEventInterface $event): void
     {
-        $this->domainEvents[] = $event;
+        $this->queuedDomainEvents[] = $event;
     }
 }

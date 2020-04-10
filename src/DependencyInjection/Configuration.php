@@ -14,6 +14,8 @@ class Configuration implements ConfigurationInterface
             ->children()
                 ->booleanNode('orm')->defaultValue(true)->end()
                 ->booleanNode('odm')->defaultValue(false)->end()
+                ->scalarNode('bus')->defaultValue('domain_events.bus')->end()
+                ->scalarNode('transport')->defaultValue('domain_events.bus')->end()
             ->end()
         ;
 
