@@ -2,7 +2,6 @@
 
 namespace AndyThorne\Components\DomainEventsBundle\Scheduler;
 
-use AndyThorne\Components\DomainEventsBundle\Events\DomainEvent;
 use AndyThorne\Components\DomainEventsBundle\Events\DomainEventInterface;
 use Symfony\Component\Messenger\MessageBusInterface;
 
@@ -49,7 +48,7 @@ class DomainEventScheduler implements DomainEventSchedulerInterface
 
     private function processEvents(array $events): void
     {
-        uasort($events, function (DomainEvent $eventA, DomainEvent $eventB) {
+        uasort($events, function (DomainEventInterface $eventA, DomainEventInterface $eventB) {
             return $eventA->getCreatedAt() <=> $eventB->getCreatedAt();
         });
 

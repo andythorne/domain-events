@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\AndyThorne\Components\DomainEventsBundle\Functional\fixtures\Entity\DomainEvents;
+namespace Tests\AndyThorne\Components\DomainEventsBundle\Functional\fixtures\Entity;
 
 use AndyThorne\Components\DomainEventsBundle\EventProvider\DomainEventProviderInterface;
 use AndyThorne\Components\DomainEventsBundle\EventProvider\DomainEventProviderTrait;
@@ -27,16 +27,11 @@ class DomainEntity implements DomainEventProviderInterface
     public function domainAction(string $action): void
     {
         $this->action = $action;
-        $this->queueDomainEvent(new DomainEntityEvent($this, $action));
-    }
-
-    public function getAction(): ?string
-    {
-        return $this->action;
+        $this->addDomainEvent(new DomainEntityEventLog($this, $action));
     }
 }
 
-class DomainEntityEvent extends DomainEvent
+class DomainEntityEventLog extends DomainEvent
 {
     /** @var DomainEntity */
     private $document;
@@ -50,15 +45,5 @@ class DomainEntityEvent extends DomainEvent
 
         $this->document = $document;
         $this->action = $action;
-    }
-
-    public function getDocument(): DomainEntity
-    {
-        return $this->document;
-    }
-
-    public function getAction(): string
-    {
-        return $this->action;
     }
 }

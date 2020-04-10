@@ -23,4 +23,4 @@ COPY tests /app/tests
 
 WORKDIR /app
 
-CMD ["php", "/app/vendor/bin/phpunit"]
+ENTRYPOINT ["tail", "-f", "/dev/null"]

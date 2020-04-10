@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\AndyThorne\Components\DomainEventsBundle\Functional\fixtures\Entity\DomainEvents;
+namespace Tests\AndyThorne\Components\DomainEventsBundle\Functional\fixtures\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 

@@ -4,13 +4,17 @@ namespace Tests\AndyThorne\Components\DomainEventsBundle\Functional\Doctrine\ODM
 
 use Doctrine\ODM\MongoDB\DocumentManager;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
-use Tests\AndyThorne\Components\DomainEventsBundle\Functional\fixtures\Document\DomainEvents\DomainDocument;
-use Tests\AndyThorne\Components\DomainEventsBundle\Functional\MessageBus\MessageInterceptorMiddleware;
+use Symfony\Component\Messenger\Transport\InMemoryTransport;
+use Tests\AndyThorne\Components\DomainEventsBundle\Functional\fixtures\Document\DomainDocument;
 
 class PublishDomainEventsSubscriberTest extends KernelTestCase
 {
-    private $messageBus;
-    private $messageBusInterceptor;
+    /** @var InMemoryTransport */
+    private $domainEventsTransport;
+
+    /** @var InMemoryTransport */
+    private $otherTransport;
+
     /** @var DocumentManager */
     private $objectManager;
 
@@ -21,8 +25,8 @@ class PublishDomainEventsSubscriberTest extends KernelTestCase
         ]);
 
         $this->objectManager = self::$container->get('doctrine_mongodb')->getManager();
-        $this->messageBus = self::$container->get(MessageInterceptorMiddleware::class);
-        $this->messageBusInterceptor = self::$container->get(MessageInterceptorMiddleware::class);
+        $this->domainEventsTransport = self::$container->get('messenger.transport.test_transport');
+        $this->otherTransport = self::$container->get('messenger.transport.other_transport');
     }
 
     protected function tearDown(): void
@@ -38,7 +42,8 @@ class PublishDomainEventsSubscriberTest extends KernelTestCase
         $this->objectManager->persist($domainDoc);
         $this->objectManager->flush();
 
-        $this->assertCount(2, $this->messageBusInterceptor->messages);
+        $this->assertCount(2, $this->domainEventsTransport->get());
+        $this->assertCount(0, $this->otherTransport->get());
     }
 
     public function testRemovedDomainDocument_FiresDomainEvent()
@@ -52,7 +57,8 @@ class PublishDomainEventsSubscriberTest extends KernelTestCase
         $this->objectManager->remove($domainDoc);
         $this->objectManager->flush();
 
-        $this->assertCount(2, $this->messageBusInterceptor->messages);
+        $this->assertCount(2, $this->domainEventsTransport->get());
+        $this->assertCount(0, $this->otherTransport->get());
     }
 
     public function testUpdateDomainDocument_FiresDomainEvent()
@@ -67,6 +73,7 @@ class PublishDomainEventsSubscriberTest extends KernelTestCase
         $this->objectManager->persist($domainDoc);
         $this->objectManager->flush();
 
-        $this->assertCount(2, $this->messageBusInterceptor->messages);
+        $this->assertCount(2, $this->domainEventsTransport->get());
+        $this->assertCount(0, $this->otherTransport->get());
     }
 }
