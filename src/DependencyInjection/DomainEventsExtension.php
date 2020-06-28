@@ -24,11 +24,15 @@ class DomainEventsExtension extends ConfigurableExtension implements PrependExte
                         'default_middleware' => 'allow_no_handlers',
                     ],
                 ],
-                'routing' => [
-                    DomainEventInterface::class => $config['transport'],
-                ],
             ],
         ];
+
+        if ($config['configure_routing']) {
+            $frameworkConfig['messenger']['routing'] = [
+                DomainEventInterface::class => $config['transport'],
+            ];
+        }
+
         $container->prependExtensionConfig('framework', $frameworkConfig);
 
         if ($config['orm']) {

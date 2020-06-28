@@ -16,6 +16,7 @@ domain_events:
     odm: false
     bus: domain_event.bus
     transport: async_domain_events
+    configure_routing: true  # Auto-configures messenger routing for DomainEventInterfaces to route to the configured transport
 
 framework:
     messenger:
@@ -34,7 +35,7 @@ framework:
             <domain_events.bus>:
                 default_middleware: allow_no_handlers
 
-        # Route all domain events to the domain event transport
+        # Route all domain events to the domain event transport if configure_routing is true (default)
         routing:
             'AndyThorne\Components\DomainEventsBundle\Events\DomainEventInterface': <domain_events.transport>
 ```
