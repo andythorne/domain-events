@@ -16,6 +16,7 @@ class Configuration implements ConfigurationInterface
                 ->booleanNode('odm')->defaultValue(false)->end()
                 ->scalarNode('bus')->defaultValue('domain_events.bus')->end()
                 ->scalarNode('transport')->defaultValue('domain_events.bus')->end()
+                ->booleanNode('configure_routing')->defaultValue(true)->end()
             ->end()
         ;
 
