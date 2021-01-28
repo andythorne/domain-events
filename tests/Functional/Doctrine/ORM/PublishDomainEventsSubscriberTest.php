@@ -35,7 +35,7 @@ class PublishDomainEventsSubscriberTest extends KernelTestCase
         $schemaTool->createSchema($metadatas, true);
     }
 
-    public function testCreateDomainEntity_FiresDomainEvent()
+    public function testCreateDomainEntityFiresDomainEvent()
     {
         $domainDoc = new DomainEntity();
         $domainDoc->domainAction('1');
@@ -47,7 +47,7 @@ class PublishDomainEventsSubscriberTest extends KernelTestCase
         $this->assertCount(0, $this->otherTransport->get());
     }
 
-    public function testRemovedDomainEntity_FiresDomainEvent()
+    public function testRemovedDomainEntityFiresDomainEvent()
     {
         $domainDoc = new DomainEntity();
         $this->objectManager->persist($domainDoc);
@@ -62,7 +62,7 @@ class PublishDomainEventsSubscriberTest extends KernelTestCase
         $this->assertCount(0, $this->otherTransport->get());
     }
 
-    public function testUpdateDomainEntity_FiresDomainEvent()
+    public function testUpdateDomainEntityFiresDomainEvent()
     {
         $domainDoc = new DomainEntity();
 

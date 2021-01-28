@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace AndyThorne\Components\DomainEventsBundle\Scheduler;
 
 use AndyThorne\Components\DomainEventsBundle\Events\DomainEventInterface;

@@ -12,9 +12,9 @@
     ],
     "require": {
         "php": "^7.3|^8.0",
-        "symfony/framework-bundle": "^4.3|^5.0",
-        "symfony/messenger": "^4.3|^5.0",
-        "symfony/yaml": "^4.3|^5.0"
+        "symfony/framework-bundle": "^4.4|^5.2",
+        "symfony/messenger": "^4.4|^5.2",
+        "symfony/yaml": "^4.4|^5.2"
     },
     "require-dev": {
         "ext-mongo": "*",

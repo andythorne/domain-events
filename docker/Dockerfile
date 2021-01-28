@@ -4,10 +4,10 @@ COPY composer.json /app/composer.json
 
 RUN composer install
 
-FROM php:7.4-alpine as test
+FROM php:8.0-alpine as test
 
 RUN apk add autoconf g++ make
-RUN pecl install mongodb-1.6.1
+RUN pecl install mongodb-1.9.0
 RUN docker-php-ext-enable mongodb
 
 RUN apk add postgresql-dev
