@@ -8,12 +8,12 @@ use AndyThorne\Components\DomainEventsBundle\EventProvider\DomainEventProviderIn
 use AndyThorne\Components\DomainEventsBundle\Scheduler\DomainEventSchedulerInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\EventSubscriber;
-use Doctrine\Common\PropertyChangedListener;
+use Doctrine\Persistence\PropertyChangedListener;
 
 abstract class AbstractDoctrineDomainEventSubscriber implements EventSubscriber
 {
-    protected $domainEventScheduler;
-    protected $domainObjects;
+    protected DomainEventSchedulerInterface $domainEventScheduler;
+    protected ArrayCollection $domainObjects;
 
     public function __construct(DomainEventSchedulerInterface $domainEventScheduler)
     {

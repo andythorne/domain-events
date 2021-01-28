@@ -10,14 +10,9 @@ use Tests\AndyThorne\Components\DomainEventsBundle\Functional\fixtures\Entity\Do
 
 class PublishDomainEventsSubscriberTest extends KernelTestCase
 {
-    /** @var InMemoryTransport */
-    private $domainEventsTransport;
-
-    /** @var InMemoryTransport */
-    private $otherTransport;
-
-    /** @var EntityManagerInterface */
-    private $objectManager;
+    private InMemoryTransport $domainEventsTransport;
+    private InMemoryTransport $otherTransport;
+    private EntityManagerInterface $objectManager;
 
     protected function setUp(): void
     {

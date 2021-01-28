@@ -10,7 +10,7 @@ use AndyThorne\Components\DomainEventsBundle\Scheduler\DomainEventSchedulerInter
 trait DomainEventProviderTrait
 {
     /** @var DomainEventInterface[] */
-    private $queuedDomainEvents = [];
+    private array $queuedDomainEvents = [];
 
     public function scheduleEvents(DomainEventSchedulerInterface $eventScheduler): void
     {

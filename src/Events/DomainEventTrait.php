@@ -8,7 +8,7 @@ use DateTimeImmutable;
 
 trait DomainEventTrait
 {
-    private $createdAt;
+    private DateTimeImmutable $createdAt;
 
     public function getCreatedAt(): DateTimeImmutable
     {
