@@ -26,7 +26,7 @@
         "doctrine/orm": "^2.0",
         "escapestudios/symfony2-coding-standard": "^3.11",
         "friendsofphp/php-cs-fixer": "^2.16",
-        "mongodb/mongodb": "^1.5",
+        "mongodb/mongodb": "^1.8",
         "phpspec/prophecy-phpunit": "^2.0",
         "phpunit/phpunit": "^9.1",
         "ramsey/uuid-doctrine": "^1.6",
