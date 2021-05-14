@@ -20,3 +20,12 @@ doctrine_mongodb:
                     dir: '%kernel.project_dir%/fixtures/Document'
                     prefix: Tests\AndyThorne\Components\DomainEventsBundle\Functional\fixtures\Document\
                     alias: TestApp
+
+services:
+    _defaults:
+        autoconfigure: true
+        autowire: true
+
+    Tests\AndyThorne\Components\DomainEventsBundle\Functional\fixtures\Document\:
+        resource: '../fixtures/Document/'
+

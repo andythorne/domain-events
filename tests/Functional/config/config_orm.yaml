@@ -15,3 +15,11 @@ doctrine:
                 dir: '%kernel.project_dir%/fixtures/Entity'
                 prefix: Tests\AndyThorne\Components\DomainEventsBundle\Functional\fixtures\Entity\
                 alias: TestApp
+
+services:
+    _defaults:
+        autoconfigure: true
+        autowire: true
+
+    Tests\AndyThorne\Components\DomainEventsBundle\Functional\fixtures\Entity\:
+        resource: '../fixtures/Entity/'
