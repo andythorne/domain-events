@@ -12,8 +12,8 @@ use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Messenger\Transport\TransportInterface;
 use Symfony\Component\Messenger\Worker;
 use Tests\AndyThorne\Components\DomainEventsBundle\Functional\fixtures\Entity\DomainEntity;
-use Tests\AndyThorne\Components\DomainEventsBundle\Functional\fixtures\Entity\NonDomainEntity;
 use Tests\AndyThorne\Components\DomainEventsBundle\Functional\fixtures\Entity\EventDispatcher\DomainActionEventLogSubscriber;
+use Tests\AndyThorne\Components\DomainEventsBundle\Functional\fixtures\Entity\NonDomainEntity;
 
 class PublishDomainEventsSubscriberTest extends KernelTestCase
 {

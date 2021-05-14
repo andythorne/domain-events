@@ -2,7 +2,6 @@
 
 namespace Tests\AndyThorne\Components\DomainEventsBundle\Functional\Doctrine\ODM;
 
-use AndyThorne\Components\DomainEventsBundle\Doctrine\ODM\DomainEventPublishingDocumentManager;
 use Doctrine\ODM\MongoDB\DocumentManager;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
@@ -12,8 +11,8 @@ use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Messenger\Transport\TransportInterface;
 use Symfony\Component\Messenger\Worker;
 use Tests\AndyThorne\Components\DomainEventsBundle\Functional\fixtures\Document\DomainDocument;
-use Tests\AndyThorne\Components\DomainEventsBundle\Functional\fixtures\Document\NonDomainDocument;
 use Tests\AndyThorne\Components\DomainEventsBundle\Functional\fixtures\Document\EventDispatcher\DomainActionEventLogSubscriber;
+use Tests\AndyThorne\Components\DomainEventsBundle\Functional\fixtures\Document\NonDomainDocument;
 
 class PublishDomainEventsSubscriberTest extends KernelTestCase
 {
@@ -35,7 +34,6 @@ class PublishDomainEventsSubscriberTest extends KernelTestCase
         $this->eventDispatcher = self::$container->get(EventDispatcherInterface::class);
         $this->domainEventsTransport = self::$container->get('messenger.transport.test_transport');
         $this->otherTransport = self::$container->get('messenger.transport.other_transport');
-
 
         $this->eventDispatcher->addSubscriber(new StopWorkerOnTimeLimitListener(5));
         $this->worker = new Worker(
