@@ -1,3 +1,6 @@
+parameters:
+    doctrine_mongodb.odm.document_manager.class: 'AndyThorne\Components\DomainEventsBundle\Doctrine\ODM\DomainEventPublishingDocumentManager'
+
 services:
     AndyThorne\Components\DomainEventsBundle\Doctrine\ODM\PublishDomainEventsSubscriber:
         arguments:

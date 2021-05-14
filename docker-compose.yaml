@@ -12,7 +12,7 @@ services:
             - ./phpunit.xml.dist:/app/phpunit.xml.dist
             - ./.php_cs.dist:/app/.php_cs.dist
             - tests/Functional/var
-            - vendor
+            - ./vendor:/app/vendor
         environment:
             ORM_DATABASE_DSN: 'postgres://postgres:postgres@postgres:5432/test-db'
             ODM_SERVER: 'mongodb://mongo:27017'
@@ -30,7 +30,7 @@ services:
         networks:
             - backend
         ports:
-            - 5432
+            - 5433:5432
         environment:
             POSTGRES_USER: postgres
             POSTGRES_PASSWORD: postgres

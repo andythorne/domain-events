@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace AndyThorne\Components\DomainEventsBundle\Events;
 
 use DateTimeImmutable;
@@ -9,8 +11,8 @@ abstract class DomainEvent implements DomainEventInterface
 {
     use DomainEventTrait;
 
-    public function __construct(?DateTimeImmutable $createdAt = null)
+    public function __construct(DateTimeImmutable $createdAt = null)
     {
-        $this->createdAt = $createdAt ?: new DateTimeImmutable();
+        $this->createdAt = $createdAt ?? new DateTimeImmutable();
     }
 }

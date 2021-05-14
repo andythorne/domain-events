@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace AndyThorne\Components\DomainEventsBundle;
 
 use AndyThorne\Components\DomainEventsBundle\DependencyInjection\Pass\MessageBusPass;

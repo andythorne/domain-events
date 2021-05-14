@@ -4,7 +4,8 @@ $finder = PhpCsFixer\Finder::create()
     ->exclude('vendor')
     ->exclude('tests/Functional/var')
     ->in('src')
-    ->in('tests');
+    ->in('tests/Unit')
+    ->in('tests/Functional/Doctrine');
 
 return PhpCsFixer\Config::create()
     ->setRules([

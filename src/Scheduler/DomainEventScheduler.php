@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace AndyThorne\Components\DomainEventsBundle\Scheduler;
 
 use AndyThorne\Components\DomainEventsBundle\Events\DomainEventInterface;
@@ -7,11 +9,11 @@ use Symfony\Component\Messenger\MessageBusInterface;
 
 class DomainEventScheduler implements DomainEventSchedulerInterface
 {
-    private $messageBus;
-    private $processing = false;
+    private MessageBusInterface $messageBus;
+    private bool $processing = false;
 
     /** @var DomainEventInterface[] */
-    private $eventQueue = [];
+    private array $eventQueue = [];
 
     public function __construct(MessageBusInterface $messageBus)
     {

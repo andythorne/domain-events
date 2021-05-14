@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace AndyThorne\Components\DomainEventsBundle\Doctrine\ODM;
 
 use AndyThorne\Components\DomainEventsBundle\Doctrine\AbstractDoctrineDomainEventSubscriber;

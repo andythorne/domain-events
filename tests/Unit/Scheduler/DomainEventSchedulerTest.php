@@ -27,7 +27,7 @@ class DomainEventSchedulerTest extends TestCase
         );
     }
 
-    public function testSchedule_WithDomainEvent_AddsDomainEventToQueue()
+    public function testScheduleWithDomainEventAddsDomainEventToQueue()
     {
         $event = $this->prophet->prophesize(DomainEventInterface::class);
 
@@ -36,7 +36,7 @@ class DomainEventSchedulerTest extends TestCase
         $this->assertEquals(1, $this->testSubject->size());
     }
 
-    public function testProcess_WithUnsortedDomainEvents_DispatchesEventsInChronologicalOrder()
+    public function testProcessWithUnsortedDomainEventsDispatchesEventsInChronologicalOrder()
     {
         $baseTime = new DateTimeImmutable('2019-12-03T12:00:00', new DateTimeZone('Europe/London'));
 
@@ -82,7 +82,7 @@ class DomainEventSchedulerTest extends TestCase
         $this->assertEquals(0, $this->testSubject->size());
     }
 
-    public function testProcess_DomainEventsQueuesAnotherDomainEvent_DispatchesInitialEventsOnly()
+    public function testProcessDomainEventsQueuesAnotherDomainEventDispatchesInitialEventsOnly()
     {
         $baseTime = new DateTimeImmutable('2019-12-03T12:00:00', new DateTimeZone('Europe/London'));
 

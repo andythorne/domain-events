@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace AndyThorne\Components\DomainEventsBundle\EventProvider;
 
 use AndyThorne\Components\DomainEventsBundle\Events\DomainEventInterface;
@@ -8,7 +10,7 @@ use AndyThorne\Components\DomainEventsBundle\Scheduler\DomainEventSchedulerInter
 trait DomainEventProviderTrait
 {
     /** @var DomainEventInterface[] */
-    private $queuedDomainEvents = [];
+    private array $queuedDomainEvents = [];
 
     public function scheduleEvents(DomainEventSchedulerInterface $eventScheduler): void
     {
