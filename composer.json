@@ -7,14 +7,14 @@
     "authors": [
         {
             "name": "Andy Thorne",
-            "email": "andy@AndyThorne.com"
+            "email": "andy@andy-thorne.co.uk"
         }
     ],
     "require": {
         "php": "^7.4|^8.0",
-        "symfony/framework-bundle": "^4.4|^5.2",
-        "symfony/messenger": "^4.4|^5.2",
-        "symfony/yaml": "^4.4|^5.2"
+        "symfony/framework-bundle": "^4.4|^5.4|^6.0",
+        "symfony/messenger": "^4.4|^5.4|^6.0",
+        "symfony/yaml": "^4.4|^5.4|^6.0"
     },
     "require-dev": {
         "ext-mongo": "*",
