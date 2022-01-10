@@ -16,7 +16,7 @@ return (new PhpCsFixer\Config())
         'ordered_class_elements' => true,
         'phpdoc_order' => true,
         'phpdoc_separation' => true,
-        'general_phpdoc_annotation_remove' => ['annotations ' => ['author', 'package']],
+        'general_phpdoc_annotation_remove' => ['annotations' => ['author', 'package']],
         'yoda_style' => [
             'equal' => false,
             'identical' => false,
