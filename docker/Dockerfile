@@ -22,7 +22,7 @@ RUN apk add postgresql-dev
 RUN docker-php-ext-install pdo pdo_pgsql
 RUN docker-php-ext-enable pdo pdo_pgsql
 
-COPY .php_cs.dist /app/.php_cs.dist
+COPY .php-cs-fixer.dist.php /app/.php-cs-fixer.dist.php
 COPY .phpcs.xml.dist /app/.phpcs.xml.dist
 COPY phpunit.xml.dist /app/phpunit.xml.dist
 COPY --from=build /app/vendor /app/vendor

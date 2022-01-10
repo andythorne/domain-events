@@ -30,11 +30,11 @@ class PublishDomainEventsSubscriberTest extends KernelTestCase
             'environment' => 'orm',
         ]);
 
-        $this->objectManager = self::$container->get('doctrine')->getManager();
-        $this->messageBus = self::$container->get(MessageBusInterface::class);
-        $this->eventDispatcher = self::$container->get(EventDispatcherInterface::class);
-        $this->domainEventsTransport = self::$container->get('messenger.transport.test_transport');
-        $this->otherTransport = self::$container->get('messenger.transport.other_transport');
+        $this->objectManager = self::getContainer()->get('doctrine')->getManager();
+        $this->messageBus = self::getContainer()->get(MessageBusInterface::class);
+        $this->eventDispatcher = self::getContainer()->get(EventDispatcherInterface::class);
+        $this->domainEventsTransport = self::getContainer()->get('messenger.transport.test_transport');
+        $this->otherTransport = self::getContainer()->get('messenger.transport.other_transport');
 
         $metadatas = $this->objectManager->getMetadataFactory()->getAllMetadata();
         $schemaTool = new SchemaTool($this->objectManager);
