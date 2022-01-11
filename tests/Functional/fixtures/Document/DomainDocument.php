@@ -23,7 +23,7 @@ class DomainDocument implements DomainEventProviderInterface
     public function domainAction(string $action): void
     {
         $this->action = $action;
-        $this->addDomainEvent(new DomainActionEventLog($this, $action));
+        $this->record(new DomainActionEventLog($this, $action));
     }
 }
 

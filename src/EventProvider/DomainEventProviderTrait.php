@@ -21,7 +21,7 @@ trait DomainEventProviderTrait
         $this->queuedDomainEvents = [];
     }
 
-    protected function addDomainEvent(DomainEventInterface $event): void
+    protected function record(DomainEventInterface $event): void
     {
         $this->queuedDomainEvents[] = $event;
     }
