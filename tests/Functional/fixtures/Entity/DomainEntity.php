@@ -27,7 +27,7 @@ class DomainEntity implements DomainEventProviderInterface
     public function domainAction(string $action): void
     {
         $this->action = $action;
-        $this->addDomainEvent(new DomainEntityEventLog($this, $action));
+        $this->record(new DomainEntityEventLog($this, $action));
     }
 }
 
